@@ -1,0 +1,53 @@
+group 'Assignment2.1'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'spring-boot'
+apply plugin: 'war'
+
+sourceCompatibility = 1.5
+
+buildscript {
+    ext {
+        springBootVersion = '1.5.2.RELEASE'
+        junitVersion = '4.12'
+        mySqlConnectorVersion = '5.1.36'
+    }
+
+    repositories {
+        maven { url "https://repo.spring.io/libs-release" }
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath 'org.springframework.boot:spring-boot-gradle-plugin:' + springBootVersion
+    }
+}
+
+jar {
+    baseName = 'myassignment1'
+    version =  '1.0.0'
+}
+
+repositories {
+    mavenLocal()
+    maven { url "https://repo.spring.io/libs-release" }
+    mavenCentral()
+}
+
+dependencies {
+    compile 'org.springframework.boot:spring-boot-starter-thymeleaf:' + springBootVersion
+    compile 'org.springframework.boot:spring-boot-starter-security:' + springBootVersion
+    compile 'org.springframework.boot:spring-boot-starter-data-jpa:' + springBootVersion
+    compile 'com.itextpdf:itextpdf:5.5.6'
+    compile 'net.sf.supercsv:super-csv-benchmark:2.4.0'
+    compile 'net.sf.supercsv:super-csv:2.4.0'
+    compile	'org.slf4j:slf4j-api:1.7.4'
+    testCompile 'junit:junit:' + junitVersion
+    runtime 'mysql:mysql-connector-java:' + mySqlConnectorVersion
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.6'
+}
